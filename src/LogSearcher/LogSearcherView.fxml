@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="657.0" prefWidth="880.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="LogSearcher.LogSearcherController">
+   <children>
+      <ScrollPane layoutY="161.0" prefHeight="483.0" prefWidth="886.0">
+         <content>
+            <VBox prefHeight="477.0" prefWidth="866.0">
+               <children>
+                  <ListView fx:id="my_list_view" prefHeight="518.0" prefWidth="866.0" />
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <ComboBox fx:id="project_type_dropdown_menu" layoutX="130.0" layoutY="43.0" onAction="#populate_life_cycle_step_dropdown_menu" prefHeight="26.0" prefWidth="181.0" />
+      <ComboBox fx:id="life_cycle_step_dropdown_menu" layoutX="432.0" layoutY="43.0" prefHeight="26.0" prefWidth="181.0" />
+      <ComboBox fx:id="effort_category_dropdown_menu" layoutX="130.0" layoutY="116.0" prefHeight="26.0" prefWidth="181.0" />
+      <ComboBox fx:id="deliverable_drop_down_menu" layoutX="432.0" layoutY="116.0" prefHeight="26.0" prefWidth="181.0" />
+      <Button fx:id="search_button" layoutX="659.0" layoutY="87.0" mnemonicParsing="false" onAction="#search_logs" prefHeight="26.0" prefWidth="109.0" text="Search" />
+      <Text layoutX="299.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log Searcher" wrappingWidth="73.21630859375" />
+      <Text layoutX="186.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Type" />
+      <Text layoutX="179.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Effort Category" />
+      <Text layoutX="510.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="492.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deliverable" />
+      <Text layoutX="482.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Life Cycle Step" wrappingWidth="81.92919921875" />
+      <Button fx:id="back_button" layoutX="30.0" layoutY="75.0" mnemonicParsing="false" onAction="#go_back_to_planning_poker" prefHeight="26.0" prefWidth="61.0" text="Back" />
+   </children>
+</AnchorPane>
