@@ -1,6 +1,7 @@
 package EfforLogConsole;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.net.URL;
@@ -26,6 +27,9 @@ public class EffortConsoleController implements Initializable{
 	@FXML
 	private Button start_log_button;
 	@FXML
+	private Button stop_log_button;
+
+	@FXML
 	private ComboBox<String> project_type_dropdown_menu;
 	@FXML
 	private ComboBox<String> life_cycle_step_dropdown_menu;
@@ -35,9 +39,17 @@ public class EffortConsoleController implements Initializable{
 	private ComboBox<String> deliverable_drop_down_menu;
 	@FXML
 	private Label clock_state_label;
+	
 	private LogTimer logTimer;
 	private Log log;
-	private LogWriter writer;
+	private LogManager manager;
+	private ConfigurationManager config_manager;
+	
+	private ArrayList<String> projects;
+	private ArrayList<String> life_cycles;
+	private ArrayList<String> effort_categories;
+	private ArrayList<String> deliverables;
+	
 	
 	private Stage stage;
 	private Scene scene;
@@ -48,8 +60,24 @@ public class EffortConsoleController implements Initializable{
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		populate_dropdown_menu(effort_category_dropdown_menu, "src/configurationFiles/effortCategory.txt"); // populate the project type drop down menu
-		populate_dropdown_menu(project_type_dropdown_menu, "src/configurationFiles/projectType.txt"); // populate effort category drop down menu
+		// load all configurations
+		this.config_manager = new ConfigurationManager();
+		this.projects = config_manager.load_projects();
+		this.effort_categories  = config_manager.load_effort_category();
+		this.deliverables = config_manager.load_deliverable();
+		
+		// set drop menus to loaded values
+		// we can't load life cycle since it is dependent on the project 
+		this.project_type_dropdown_menu.setItems(FXCollections.observableArrayList(projects));
+		this.effort_category_dropdown_menu.setItems(FXCollections.observableArrayList(effort_categories));
+		this.deliverable_drop_down_menu.setItems(FXCollections.observableArrayList(deliverables));
+		
+		// set initial state
+		this.project_type_dropdown_menu.setValue(this.projects.get(0));
+		populate_life_cycle_step_dropdown_menu(null); // this must be set in order to set correct life cycle step
+		this.life_cycle_step_dropdown_menu.setValue(this.life_cycles.get(0));
+		this.effort_category_dropdown_menu.setValue(this.effort_categories.get(0));
+		this.deliverable_drop_down_menu.setValue(this.deliverables.get(0));
 	}
 	
 	/**
@@ -58,21 +86,19 @@ public class EffortConsoleController implements Initializable{
 	 */
 	@FXML
 	public void start_log(ActionEvent event) {
-		log = new Log();
+		this.log = new Log();
 		logTimer = new LogTimer();
 		logTimer.start();
 		
 		// build the new log
-		log.set_date_created(LocalDate.now());
-		log.set_start_time(logTimer.get_start_time());
-		log.set_deliverable("Dummy Deliverable");
-		log.set_project_type(project_type_dropdown_menu.getValue());
-		log.set_life_cycle_step(life_cycle_step_dropdown_menu.getValue());
-		log.set_effort_category(effort_category_dropdown_menu.getValue());
+		this.log.set_date_created(LocalDate.now());
+		this.log.set_start_time(logTimer.get_start_time());
+		this.log.set_deliverable(deliverable_drop_down_menu.getValue());
+		this.log.set_project_type(project_type_dropdown_menu.getValue());
+		this.log.set_life_cycle_step(life_cycle_step_dropdown_menu.getValue());
+		this.log.set_effort_category(effort_category_dropdown_menu.getValue());
 		
-		System.out.println(log.get_date_created());
-		System.out.println(log.get_start_time());
-		
+
 		clock_state_label.setText("Clock is running");
 	}
 	
@@ -82,16 +108,23 @@ public class EffortConsoleController implements Initializable{
 	 */
 	@FXML
 	public void stop_log(ActionEvent event) {
+		// stop LogTimer and set times to Log
 		logTimer.stop();
 		log.set_stop_time(logTimer.get_end_time());
-		System.out.println(log.get_stop_time());
+		log.set_elapsed_time();
 		clock_state_label.setText("Clock is stopped");
 		
-		LogWriter writer = new LogWriter("src/EfforLogConsole/logs.txt", log.toString(), "YourSecretKey123");
-		//writer.write();
-		writer.write_encrypted();
+		// TODO maybe move this to initialize?
+		manager = new LogManager("src/EfforLogConsole/Logs.txt", "YourSecretKey123");
 		
-		System.out.println(writer.read_decrypted());
+		try {
+			manager.write(log);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@FXML
@@ -103,58 +136,10 @@ public class EffortConsoleController implements Initializable{
 	    stage.show();
 	}
 	
-	/**
-	 * This function is called whenever we interact with the life_cycle_step_dropdown_menu populates the 
-	 * combo box life_cycle_step_dropdown_menu based off the value selected by the project_type_dropdown_menu
-	 * @param event 
-	 */
 	@FXML
-	public void populate_life_cycle_step_dropdown_menu(ActionEvent event) {
-		if(project_type_dropdown_menu.getValue() != null) {
-			String project_type = project_type_dropdown_menu.getValue().strip();
-			
-			if (project_type.equals("Business Project")) {
-				populate_dropdown_menu(life_cycle_step_dropdown_menu, "src/configurationFiles/businessProjectLifeCycleSteps.txt");
-			}
-			
-			else if(project_type.equals("Development Project")) {
-				populate_dropdown_menu(life_cycle_step_dropdown_menu, "src/configurationFiles/developmentProjectLifeCycleSteps.txt");
-			}
-		}
-	}	
-	
-	
-	/**
-	 * This populates the options of a combo box based off values in a configuration file
-	 * @param dropdown_menu is the combo box we want to populate the options for
-	 * @param file_directory this is the location of our configuration file holding the values we want for
-	 */
-	private void populate_dropdown_menu(ComboBox<String> dropdown_menu, String file_directory) {
-		ArrayList<String> drop_down_menu_items = get_dropdown_values(dropdown_menu, file_directory); // get the values from the file
-		dropdown_menu.setItems(FXCollections.observableArrayList(drop_down_menu_items)); // set the values of the drop down combo box
-    }
-	
-	
-	/**
-	 * This is a helper function for the populate_dropdown_menu function
-	 * This reads the values from a file line by line
-	 * @param dropdown_menu
-	 * @param file_directory
-	 * @return
-	 */
-	private ArrayList<String> get_dropdown_values(ComboBox<String> dropdown_menu, String file_directory){
-        ArrayList<String> dropdown_values = new ArrayList<>();
-      
-        try (BufferedReader reader = new BufferedReader(new FileReader(file_directory))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-            	dropdown_values.add(line.strip());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-       
-        return dropdown_values;
+	public void populate_life_cycle_step_dropdown_menu(ActionEvent event) {		
+		this.life_cycles = this.config_manager.load_life_cycles(project_type_dropdown_menu.getValue());	
+		this.life_cycle_step_dropdown_menu.setItems(FXCollections.observableArrayList(this.life_cycles));
 	}
 	
 	
