@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import HarwinderPart.Card;
 import HarwinderPart.CardHolder;
+import HarwinderPart.PlanningPokerApp;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -148,16 +149,20 @@ public class DiscussionPane implements Initializable{
 	
 	@FXML
 	public void switchToNewRound(ActionEvent event) throws IOException {
-	    root = FXMLLoader.load(getClass().getResource("PLACEHOLDER.fxml")); //add the name of the planning poker fxml
-	    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-	    scene = new Scene(root);
-	    stage.setScene(scene);
-	    stage.show();
+		System.out.println("Hi");
+		PlanningPokerApp planningPokerApp = new PlanningPokerApp();
+        Scene planningPokerScene = planningPokerApp.createInitialScene();
+        Stage currentStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        currentStage.setScene(planningPokerScene);
+        currentStage.show();
+        
+        planningPokerApp.start(currentStage);
 	}
 	
 	@FXML
 	public void switchToEndSession(ActionEvent event) throws IOException {
-	    root = FXMLLoader.load(getClass().getResource("PLACEHOLDER.fxml"));
+		
+		root = FXMLLoader.load(getClass().getResource("homepage.fxml"));
 	    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	    scene = new Scene(root);
 	    stage.setScene(scene);
