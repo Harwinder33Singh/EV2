@@ -1,3 +1,6 @@
+// Auther: Chandler Thomas
+// Security Implementation
+
 package PlanningPokerApplication;
 import javafx.application.Application;
 import javafx.scene.Scene;
