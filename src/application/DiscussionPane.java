@@ -139,7 +139,7 @@ public class DiscussionPane implements Initializable{
 
 	@FXML
 	public void switchToReviewHD(ActionEvent event) throws IOException {
-	    root = FXMLLoader.load(getClass().getResource("PLACEHOLDER.fxml")); //add the name of the effortloger fxml
+	    root = FXMLLoader.load(getClass().getResource("/LogSearcher/LogSearcherView.fxml")); //add the name of the effortloger fxml
 	    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	    scene = new Scene(root);
 	    stage.setScene(scene);
