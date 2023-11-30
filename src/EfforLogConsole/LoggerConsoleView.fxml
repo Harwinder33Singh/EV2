@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EfforLogConsole.EffortConsoleController">
+   <children>
+      <Button id="start_log_button" fx:id="start_log_button" layoutX="67.0" layoutY="55.0" mnemonicParsing="false" onAction="#start_log" prefHeight="33.0" prefWidth="121.0" text="Start Activity" />
+      <ComboBox id="project_dropdown_menu" fx:id="project_type_dropdown_menu" layoutX="67.0" layoutY="129.0" onAction="#populate_life_cycle_step_dropdown_menu" prefWidth="150.0" />
+      <Label layoutX="67.0" layoutY="112.0" prefHeight="17.0" prefWidth="43.0" text="Project:" />
+      <ComboBox id="life_cycle_step_dropdown_menu" fx:id="life_cycle_step_dropdown_menu" layoutX="331.0" layoutY="130.0" prefWidth="150.0" />
+      <ComboBox id="effort_category_dropdown_menu" fx:id="effort_category_dropdown_menu" layoutX="67.0" layoutY="194.0" prefWidth="150.0" />
+      <ComboBox id="deliverable_drop_down_menu" fx:id="deliverable_drop_down_menu" layoutX="331.0" layoutY="194.0" prefWidth="150.0" />
+      <Button id="stop_log_button" fx:id="stop_log_button" layoutX="67.0" layoutY="256.0" mnemonicParsing="false" onAction="#stop_log" prefHeight="33.0" prefWidth="121.0" text="Stop this activity" />
+      <Label layoutX="331.0" layoutY="112.0" text="Life Cycle Step" />
+      <Label layoutX="67.0" layoutY="177.0" text="Effort Category" />
+      <Label layoutX="331.0" layoutY="177.0" text="Deliverable" />
+      <Label id="clock_state_label" fx:id="clock_state_label" layoutX="255.0" layoutY="23.0" text="Clock is stopped" />
+      <Button fx:id="back_button" layoutX="533.0" layoutY="354.0" mnemonicParsing="false" onAction="#switchToHome" text="Back" />
+   </children>
+</AnchorPane>
