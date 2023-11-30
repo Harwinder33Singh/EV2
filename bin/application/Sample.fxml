@@ -10,8 +10,8 @@
    <children>
       <TextArea fx:id="textArea" layoutX="223.0" prefHeight="446.0" prefWidth="250.0" />
       <Button fx:id="review_hd" layoutX="500.0" layoutY="169.0" mnemonicParsing="false" onAction="#switchToReviewHD" text="Review Historical data" />
-      <Button fx:id="new_round" layoutX="500.0" layoutY="210.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="133.0" text="New Round" />
-      <Button fx:id="end_session" layoutX="499.0" layoutY="252.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="134.0" text="End Session" />
+      <Button fx:id="new_round" layoutX="500.0" layoutY="210.0" mnemonicParsing="false" onAction="#switchToNewRound" prefHeight="26.0" prefWidth="133.0" text="New Round" />
+      <Button fx:id="end_session" layoutX="499.0" layoutY="252.0" mnemonicParsing="false" onAction="#switchToEndSession" prefHeight="26.0" prefWidth="134.0" text="End Session" />
       <TextArea fx:id="discussion_area" layoutX="8.0" layoutY="14.0" prefHeight="290.0" prefWidth="200.0" />
       <Label fx:id="player_label" layoutX="14.0" layoutY="315.0" prefHeight="18.0" prefWidth="66.0" text="Player:" />
       <Label fx:id="role_label" layoutX="14.0" layoutY="333.0" prefHeight="18.0" prefWidth="66.0" text="Role:" />
