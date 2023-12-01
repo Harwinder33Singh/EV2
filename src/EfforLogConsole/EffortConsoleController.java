@@ -57,6 +57,7 @@ public class EffortConsoleController implements Initializable{
 	
 	/**
 	 * This is essentially a constructor for the controller
+	 * @author Emmanuel Bastidas
 	 */
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
@@ -82,6 +83,7 @@ public class EffortConsoleController implements Initializable{
 	
 	/**
 	 * Create a new log and start keeping track of the time
+	 * @author Emmanuel Bastidas
 	 * @param event
 	 */
 	@FXML
@@ -105,6 +107,7 @@ public class EffortConsoleController implements Initializable{
 	/**
 	 * Stop the logging and store the log
 	 * @param event
+	 * @author Emmanuel Bastidas
 	 */
 	@FXML
 	public void stop_log(ActionEvent event) {
@@ -114,7 +117,7 @@ public class EffortConsoleController implements Initializable{
 		log.set_elapsed_time();
 		clock_state_label.setText("Clock is stopped");
 		
-		// TODO maybe move this to initialize?
+	
 		manager = new LogManager("src/EfforLogConsole/Logs.txt", "YourSecretKey123");
 		
 		try {
@@ -127,6 +130,11 @@ public class EffortConsoleController implements Initializable{
 		}
 	}
 	
+	/**
+	 * @param event
+	 * @author Minh Tran
+	 * @throws IOException
+	 */
 	@FXML
 	public void switchToHome(ActionEvent event) throws IOException {
 	    root = FXMLLoader.load(getClass().getResource("/PlanningPokerApplication/homepage.fxml")); //add the name of the effortloger fxml
@@ -136,6 +144,12 @@ public class EffortConsoleController implements Initializable{
 	    stage.show();
 	}
 	
+	
+	/**
+	 * Populates the life cycle drop down menu
+	 * @param event
+	 * @author Emmanuel Bastidas
+	 */
 	@FXML
 	public void populate_life_cycle_step_dropdown_menu(ActionEvent event) {		
 		this.life_cycles = this.config_manager.load_life_cycles(project_type_dropdown_menu.getValue());	

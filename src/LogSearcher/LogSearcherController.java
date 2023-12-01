@@ -140,7 +140,7 @@ public class LogSearcherController implements Initializable{
 	 * 
 	 * @param event
 	 * @throws IOException
-	 * @author Minh??
+	 * @author Minh Tran
 	 */
 	@FXML
 	public void go_back_to_planning_poker(ActionEvent event) throws IOException {
