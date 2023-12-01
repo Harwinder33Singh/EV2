@@ -2,8 +2,10 @@ package HarwinderPart;
 
 import java.util.List;
 
+//Singleton class to hold and manage a list of Card objects
 public final class CardHolder {
 		  private List<Card> card;
+		  // Singleton instance of CardHolder
 		  private final static CardHolder INSTANCE = new CardHolder();
 		  
 		  private CardHolder() {}

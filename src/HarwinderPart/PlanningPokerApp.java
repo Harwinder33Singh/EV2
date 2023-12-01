@@ -25,7 +25,8 @@ public class PlanningPokerApp extends Application {
         primaryStage.setTitle("Planning Poker");
         createInitialScene();
     }
-
+    
+    // Create the initial scene where the user enters the range and number of players
     public Scene createInitialScene() {
         GridPane grid = new GridPane();
         grid.setPadding(new Insets(10, 10, 10, 10));
@@ -59,7 +60,8 @@ public class PlanningPokerApp extends Application {
         Scene scene = new Scene(grid, 400, 400);
         return scene;
     }
-
+    
+    // Create the scene for each player to select their role and difficulty
     private void createPlayerScene(int range) {
         if (currentPlayer <= totalPlayers) {
             GridPane grid = new GridPane();
@@ -110,11 +112,12 @@ public class PlanningPokerApp extends Application {
             primaryStage.show();
         } else {
         	// Call Minh's Scene
+        	// All players have finished, proceed to the next step
             start2(primaryStage);
-//            showSummary();
         }
     }
     
+    // Show the summary of player roles and difficulties
     private void showSummary() {
         for (Card card : playerCards) {
             System.out.println("Player " + card.getPlayerNumber() + ": Role - " + card.getRole() +
@@ -123,6 +126,7 @@ public class PlanningPokerApp extends Application {
         showAlert("All players are finished. Proceed to the next step.");
     }
 
+    // Show an alert with the given message
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -131,6 +135,7 @@ public class PlanningPokerApp extends Application {
         alert.showAndWait();
     }
 
+    // Start the second scene (Minh's Scene) using FXMLLoader
     public void start2(Stage primaryStage) {
 		try {
 			CardHolder holder = CardHolder.getInstance();
