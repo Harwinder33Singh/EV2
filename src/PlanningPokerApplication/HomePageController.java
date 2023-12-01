@@ -40,6 +40,9 @@ public class HomePageController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {}
 	
+/**
+ * @author Minh Tran
+ */
 	@FXML
 	public void switchToEL(ActionEvent event) throws IOException {
 	    root = FXMLLoader.load(getClass().getResource("/EfforLogConsole/LoggerConsoleView.fxml")); //add the name of the effortloger fxml
@@ -48,7 +51,10 @@ public class HomePageController implements Initializable{
 	    stage.setScene(scene);
 	    stage.show();
 	}
-	
+
+/**
+ * @author Minh Tran
+ */
 	@FXML
 	public void switchToPP(ActionEvent event) throws IOException {
 		PlanningPokerApp planningPokerApp = new PlanningPokerApp();
@@ -60,7 +66,10 @@ public class HomePageController implements Initializable{
         
         planningPokerApp.start(currentStage);
 	}
-	
+
+/**
+ * @author Minh Tran
+ */
 	@FXML
 	public void switchToLogin(ActionEvent event) throws IOException {
 	    root = FXMLLoader.load(getClass().getResource("login.fxml"));

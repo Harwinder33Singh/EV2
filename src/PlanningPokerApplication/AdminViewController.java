@@ -56,7 +56,11 @@ public class AdminViewController implements Initializable{
         	user_list.getItems().add(user.getUsername() + " - " + user.getRole());
         }
 	}
-	
+
+/**
+ * @author Harwinder Singh & Minh Tran
+ * Harwinder wrote the logic, Minh converted it into FXML format
+ */
 	@FXML
 	public void changing(ActionEvent event) throws IOException {
 		// Handle role change button action
@@ -74,7 +78,11 @@ public class AdminViewController implements Initializable{
             showAlert("User not found");
         }
 	}
-	
+
+/**
+ * @author Harwinder Singh & Minh Tran
+ * Harwinder wrote the logic, Minh converted it into FXML format
+ */	
 	@FXML
 	public void switchToLogin(ActionEvent event) throws IOException {
 		// Switch to login view
@@ -85,6 +93,10 @@ public class AdminViewController implements Initializable{
 	    stage.show();
 	}
 	
+/**
+ * @author Harwinder Singh & Minh Tran
+ * Harwinder wrote the logic, Minh converted it into FXML format
+ */
 	// Refresh the user list view
     private void refreshUserListView(ListView<String> userListView) {
         userListView.getItems().clear();
@@ -93,6 +105,10 @@ public class AdminViewController implements Initializable{
         }
     }
     
+/**
+ * @author Harwinder Singh & Minh Tran
+ * Harwinder wrote the logic, Minh converted it into FXML format
+ */
     // Delete a user from the list and file
     private void deleteUser(String usernameToDelete) {
         User userToDelete = null;
@@ -111,6 +127,10 @@ public class AdminViewController implements Initializable{
         userFileM.deleteUser(usernameToDelete);
     }
     
+/**
+ * @author Harwinder Singh & Minh Tran
+ * Harwinder wrote the logic, Minh converted it into FXML format
+ */
     // Find a user by username
     private User findUserByUsername(String username) {
     	String[] split = username.split(" ");
@@ -121,7 +141,11 @@ public class AdminViewController implements Initializable{
         }
         return null;
     }
-    
+
+/**
+ * @author Harwinder Singh & Minh Tran
+ * Harwinder wrote the logic, Minh converted it into FXML format
+ */
     // Show an information alert
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
