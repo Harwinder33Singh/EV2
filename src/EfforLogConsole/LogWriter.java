@@ -1,6 +1,6 @@
 package EfforLogConsole;
 /**
-Deprecated use Log Manager
+Deprecated use Log Manager class
 */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 import PlanningPokerApplication.Crypto;
 /**
-Deprecated use Log Manager
+Deprecated use Log Manager class
 */
 
 public class LogWriter {
