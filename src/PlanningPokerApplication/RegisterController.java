@@ -61,7 +61,10 @@ public class RegisterController implements Initializable{
         roles_combo_box.getItems().addAll(allRoles.getAllRoles());
         roles_combo_box.setValue(allRoles.getAllRoles().get(0));;
 	}
-	
+
+/**
+ * @author Minh Tran
+ */
 	@FXML
 	public void create_button(ActionEvent event) throws IOException {
         newUsername = new_username_field.getText();
@@ -102,6 +105,9 @@ public class RegisterController implements Initializable{
         }
 	}
 	
+/**
+ * @author Minh Tran
+ */
 	@FXML
 	public void check_password(ActionEvent event) {
         String adminPassword = "AdminPassword";         
@@ -125,6 +131,10 @@ public class RegisterController implements Initializable{
             showAlert("Incorrect Administrator Password");
         }
 	}
+
+/**
+ * @author Minh Tran
+ */
 	@FXML
 	public void switchToLogin(ActionEvent event) throws IOException {
 	    root = FXMLLoader.load(getClass().getResource("login.fxml"));
@@ -133,7 +143,10 @@ public class RegisterController implements Initializable{
 	    stage.setScene(scene);
 	    stage.show();
 	}
-	
+
+/**
+ * @author Minh Tran
+ */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Login Status");
@@ -141,6 +154,10 @@ public class RegisterController implements Initializable{
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+/**
+ * @author Minh Tran
+ */
     private boolean validatePassword(String password) {
         return password.length() >= 8 && password.matches(".*\\d.*") && password.matches(".*[!@#$%^&*()].*");
     }

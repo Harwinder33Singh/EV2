@@ -50,6 +50,9 @@ public class LoginController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {}
 	
+/**
+ * @author Minh Tran
+ */
 	@FXML
 	public void login_button(ActionEvent event) throws IOException {
 
@@ -86,6 +89,9 @@ public class LoginController implements Initializable{
         
 	}
 	
+/**
+ * @author Minh Tran
+ */
 	@FXML
 	public void switchToRegister(ActionEvent event) throws IOException {
 	    root = FXMLLoader.load(getClass().getResource("register.fxml"));
@@ -95,6 +101,9 @@ public class LoginController implements Initializable{
 	    stage.show();
 	}
 	
+/**
+ * @author Minh Tran
+ */
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Login Status");
@@ -102,7 +111,10 @@ public class LoginController implements Initializable{
         alert.setContentText(message);
         alert.showAndWait();
     }
-    
+
+/**
+ * @author Minh Tran
+ */ 
     private boolean isAdmin(String username) {
    	 for (User user : users) {
    	        if (user.getUsername().equals(username) && user.getRole().equalsIgnoreCase("Administrator")) {
@@ -111,7 +123,10 @@ public class LoginController implements Initializable{
    	    }
    	    return false;
 	}
-    
+
+/**
+ * @author Minh Tran
+ */
     private User isValidLogin(String username, String password) {
         for (User user : users) {
         	try {

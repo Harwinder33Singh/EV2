@@ -1,5 +1,7 @@
 package PlanningPokerApplication;
-
+/**
+ * @author Minh Tran
+ */
 public class SharedDataModel {
     private static String newUsername;
     private static String newPassword;
