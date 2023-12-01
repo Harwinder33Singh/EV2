@@ -45,16 +45,25 @@ public class LogTimer {
 	}
 	
 
+	/**
+	 * @author Emmanuel Bastidas
+	 */
 	public LocalTime get_start_time() {
 		return this.start_time;
 	}
 	
 	
+	/**
+	 * @author Emmanuel Bastidas
+	 */
 	public LocalTime get_end_time() {
 		return this.end_time;
 	}
 	
 	
+	/**
+	 * @author Emmanuel Bastidas
+	 */
 	public Duration get_elapsed_time() {
 		return this.elapsed_time;
 	}

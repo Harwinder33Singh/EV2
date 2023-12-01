@@ -16,7 +16,6 @@ public class ConfigurationManager {
 	}
 	
 	/**
-	 * 
 	 * Create a new project 
 	 * @author Emmanuel Bastidas
 	 * @param project_name the name of the project you want to create
@@ -48,9 +47,6 @@ public class ConfigurationManager {
 	}
 	
 	/**
-	 * TODO in order to make this more modular I need to reformat how other parts of the code interact with projects
-	 * This will mean reformatting the development life cycle file for now we will only use the values that exist
-	 * 
 	 * For now however this returns all life cycle steps for the current project
 	 * @param project
 	 * @return
@@ -103,8 +99,9 @@ public class ConfigurationManager {
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Load all deliverables
+	 * @author Emmanuel Bastidas
+	 * @return arraylist of deliverables
 	 */
 	public ArrayList<String> load_deliverable(){
 		ArrayList<String> deliverables = new ArrayList<>();
