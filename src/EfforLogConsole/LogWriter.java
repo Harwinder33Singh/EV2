@@ -1,5 +1,7 @@
 package EfforLogConsole;
-
+/**
+Deprecated use Log Manager
+*/
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -9,6 +11,9 @@ import java.io.WriteAbortedException;
 import java.util.ArrayList;
 
 import PlanningPokerApplication.Crypto;
+/**
+Deprecated use Log Manager
+*/
 
 public class LogWriter {
 	private String encrypted_content;
