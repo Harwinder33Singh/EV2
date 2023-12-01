@@ -47,8 +47,11 @@ public class AdminViewController implements Initializable{
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		// Initialize the ComboBox with roles
         roles_combo_box.getItems().addAll(allRoles.getAllRoles());
-        roles_combo_box.setValue(allRoles.getAllRoles().get(0));;      
+        roles_combo_box.setValue(allRoles.getAllRoles().get(0));
+        
+        // Populate the ListView with user information
         for (User user : users) {
         	user_list.getItems().add(user.getUsername() + " - " + user.getRole());
         }
@@ -56,6 +59,7 @@ public class AdminViewController implements Initializable{
 	
 	@FXML
 	public void changing(ActionEvent event) throws IOException {
+		// Handle role change button action
     	String selectedUser = user_list.getSelectionModel().getSelectedItem();
         String newRole = roles_combo_box.getValue();
         User userToChangeRole = findUserByUsername(selectedUser);
@@ -73,6 +77,7 @@ public class AdminViewController implements Initializable{
 	
 	@FXML
 	public void switchToLogin(ActionEvent event) throws IOException {
+		// Switch to login view
 	    root = FXMLLoader.load(getClass().getResource("login.fxml"));
 	    stage = (Stage)((Node)event.getSource()).getScene().getWindow();
 	    scene = new Scene(root);
@@ -80,6 +85,7 @@ public class AdminViewController implements Initializable{
 	    stage.show();
 	}
 	
+	// Refresh the user list view
     private void refreshUserListView(ListView<String> userListView) {
         userListView.getItems().clear();
         for (User user : users) {
@@ -87,6 +93,7 @@ public class AdminViewController implements Initializable{
         }
     }
     
+    // Delete a user from the list and file
     private void deleteUser(String usernameToDelete) {
         User userToDelete = null;
         for (User user : users) {
@@ -104,6 +111,7 @@ public class AdminViewController implements Initializable{
         userFileM.deleteUser(usernameToDelete);
     }
     
+    // Find a user by username
     private User findUserByUsername(String username) {
     	String[] split = username.split(" ");
         for (User user : users) {
@@ -113,7 +121,8 @@ public class AdminViewController implements Initializable{
         }
         return null;
     }
-	
+    
+    // Show an information alert
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Login Status");
